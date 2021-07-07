@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>LINE Notify x Raspberry Pi = 💖</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<!-- https://revealjs.com/themes/ -->
+		<link rel="stylesheet" href="dist/theme/simple.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,11 +17,320 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<div style="display: flex; align-items: center; justify-content: center;">
+						<img width=400 style="margin: 0 50px 0 0;" src="dist/images/line_notify.png">
+						<div style="font-size: 100px;">x</div>
+						<img width=400 style="margin: 0;" src="dist/images/raspberry_pi.png">
+						<div style="font-size: 100px; margin-right: 40px;">=</div>
+						<div style="font-size: 150px;">💖</div>
+					</div>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## 自己紹介
+						### <ruby>野田<rt>のだ</rt></ruby><ruby>心平<rt>しんぺい</rt></ruby>
+						- ハンドルネーム: <ruby>QUANON<rt>くあのん</rt></ruby>
+						- 福岡在住
+						- サーバサイドエンジニア
+						- 好きなもの
+						<div style="display: flex; align-items: center; justify-content: center;">
+							<figure>
+								<img style="margin-bottom: 5px;" height=180 src="dist/images/tunapaha.jpg">
+								<figcaption style="font-size: 20px; text-align: center;">スリランカカレー</figcaption>
+							</figure>
+							<figure>
+								<img style="margin-bottom: 5px;" height=180 src="dist/images/haruki_murakami.jpg">
+								<figcaption style="font-size: 20px; text-align: center;">村上春樹</figcaption>
+							</figure>
+						</div>
+					</textarea>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## [[Ruby][LINE] ごみ出し日に LINE で通知する](https://qiita.com/QUANON/items/ccfe650a30bd6068a5f4)
+						</textarea>
+					</section>
+					<section>
+						<div style="overflow: scroll; height: 700px;">
+							<figure><img src="dist/images/qiita_article1.png"></figure>
+						</div>
+					</section>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## 主な対象者
+						- Python/Ruby/JavsScript が使える。
+							- プログラマでなくても軽く使える程度で OK 🙆
+						- Linux なんとなくわかる 🤖
+							- 基本的なコマンドが使える。
+							- ssh や cron がなんとなくわかる。
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## 日常のカジュアルな<br>困りごとを解決したい
+						- ゴミ出し日を忘れちゃう 😢
+						- Google カレンダーの通知は気づきづらい 🙈
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						<figure>
+							<img src="dist/images/line.png">
+						</figure>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## 要件
+						- ゴミ出し日の 19:00 に LINE に通知する。<br>※ 福岡は深夜にゴミを回収する。
+							- 毎週月・木曜日: 燃えるゴミ
+							- 第 2 日曜日: 燃えないごみ
+							- 第 4 日曜日: 空きびん・ペットボトル
+						- 毎日 19:00 にゴミ出し日か判定する。ゴミ出し日なら LINE に通知する。
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## どうやって通知する？ 🤔
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## 例 1
+						- AWS Lambda
+							- Rate/Cron で定期実行する。
+							- スクリプトは Python/Ruby/JavsScript など好きな言語で書く。
+							- AWS アカウントが必要。
+							- 有料になる可能性がある。
+							- ライブラリ (npm や pip パッケージ、gem など) を使うのが面倒。
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## 例 2
+						- Google App Script
+							- トリガーで定期実行する。
+							- スクリプトは JavsScript で書く。
+							- Google アカウントがあれば無料で使える。
+							- npm パッケージを使うのが面倒。
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## もっと気軽に書きたい 😂
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						<figure>
+							<img style="margin-bottom: 5px;" height=400 src="dist/images/raspberry_pi_4b.jpg">
+							<figcaption style="font-size: 40px; text-align: center;">Raspberry Pi</figcaption>
+						</figure>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Raspberry Pi
+						- ARM プロセッサを搭載した<br>シングルボードコンピュータ。
+						- [公式ショップ](https://jp.rs-online.com/web/c/raspberry-pi-arduino-development-tools/raspberry-pi-shop/raspberry-pi/) で約 4,200 円 (税別) で購入できる。
+						- Raspberry Pi OS という Debian ベースの OS を<br>インストールできる。
+						  - [Raspberry Pi Imager](https://www.raspberrypi.org/software/) というツールを使えば<br>
+							  OS イメージを microSD に簡単に書き込める。
+						- USB 電源なので、常時起動していても<br>電気代がほとんど掛からない。
+						  - 1 ヶ月 100 円未満。
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Raspberry Pi
+						- Ruby や Python、Node.js など好きな言語をインストールして使える。
+						- cron を使ってスクリプトを定期実行できる。
+					</textarea>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## 実現方法
+							- Raspberry Pi に Ruby をインストールする。
+							- LINE Notify でトークンを取得する。
+								- Qiita: [自分の LINE に Ruby で通知を送る](https://qiita.com/QUANON/items/94f8835e923c76188f66)
+							- スクリプトを実装し、cron で定期実行する。
+								- Qiita: [[Ruby][LINE] ごみ出し日に LINE で通知する](https://qiita.com/QUANON/items/ccfe650a30bd6068a5f4)
+						</textarea>
+					</section>
+					<section>
+						<div style="overflow: scroll; height: 700px;">
+							<figure><img src="dist/images/qiita_article2.png"></figure>
+						</div>
+					</section>
+					<section style="height: 100%;">
+						<h3>Ruby スクリプト</h3>
+						<pre style="height: 80%;"><code data-trim data-noescape>
+							require 'active_support'
+							require 'active_support/core_ext'
+							require 'net/http'
+							require 'uri'
+
+							# LINE に通知するためのサービスクラス。
+							class NotifyLINE
+								TOKEN = 'ここに LINE Notify のトークンを入力する。'
+								URL = 'https://notify-api.line.me/api/notify'
+
+								attr_reader :message
+
+								def self.call(message)
+									new(message).call
+								end
+
+								def initialize(message)
+									@message = message
+								end
+
+								def call
+									Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |https|
+										https.request(request)
+									end
+								end
+
+								private
+
+								def request
+									request = Net::HTTP::Post.new(uri)
+									request['Authorization'] = "Bearer #{TOKEN}"
+									request.set_form_data(message: message)
+									request
+								end
+
+								def uri
+									URI.parse(URL)
+								end
+							end
+
+							# ゴミ捨て日を表すクラス。
+							class GarbageDisposalDay
+								attr_reader :wday, :nth, :type
+
+								WDAYS = %w(日 月 火 水 木 金 土).freeze
+
+								def initialize(wday:, nth:, type:)
+									@wday = WDAYS.index(wday)
+									@nth = nth
+									@type = type
+								end
+
+								def to_s
+									"第 #{nth} #{WDAYS[wday]}曜日「#{type}」"
+								end
+
+								def apply?(date)
+									wday == date.wday && nth == nth_day_of_week(date)
+								end
+
+								private
+
+								# 日付がその月で何回目の曜日かどうか。
+								def nth_day_of_week(date)
+									(date.beginning_of_month..date).count { _1.wday == date.wday }
+								end
+							end
+
+							# 住んでいる地域のごみ出し日を定義する。
+							GARBAGE_DISPOSAL_DAYS = [
+								# 毎週月・木は燃えるゴミの日。
+								*%w(月 木).product([*1..5]).map { |wday, nth| GarbageDisposalDay.new(wday: wday, nth: nth, type: '燃えるゴミ') },
+								GarbageDisposalDay.new(wday: '日', nth: 2, type: '燃えないごみ'),
+								GarbageDisposalDay.new(wday: '日', nth: 4, type: '空きびん・ペットボトル'),
+								GarbageDisposalDay.new(wday: '火', nth: 2, type: '古紙・ダンボール (翌朝回収)'),
+								GarbageDisposalDay.new(wday: '火', nth: 4, type: '古紙・ダンボール (翌朝回収)')
+							]
+
+							today = Date.today
+							garbage_disposal_day = GARBAGE_DISPOSAL_DAYS.find { _1.apply?(today) }
+
+							if garbage_disposal_day
+								NotifyLINE.call("今日は#{garbage_disposal_day}の日です。忘れずに捨てましょう！")
+							end
+						</code></pre>
+					</section>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						<figure>
+							<img style="margin-bottom: 5px;" height=600 src="dist/images/my_line.jpg">
+							<figcaption style="font-size: 40px; text-align: center;">LINE Notify からの通知</figcaption>
+						</figure>
+					</textarea>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## その他の活用方法
+							- Headless Chrome を動かせる。
+								- [Puppeteer](https://github.com/puppeteer/puppeteer), [Playwright](https://github.com/microsoft/playwright) etc.
+								- ログイン操作
+								- 任意の要素の画像キャプチャ
+									- Qiita: [[Node.js][LINE] 毎日 LINE に花粉情報を通知する](https://qiita.com/QUANON/items/2bef162270cff879baed)
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							<div style="overflow: scroll; height: 700px;">
+								<figure><img src="dist/images/qiita_article3.png"></figure>
+							</div>
+						</textarea>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## まとめ
+							- Raspberry Pi を使うと<br>
+								LINE Notify に定期的に通知するスクリプトを<br>
+								自分の好きな言語で書ける 💪
+							- 数千円の初期投資でずっと使える 💪
+							- LINE Notify との相性抜群 🥰
+							- たのしい LINE Notify ライフを満喫しよう 💖
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							<figure>
+								<img style="margin-bottom: 5px;" height=400 src="dist/images/raspberry_pi_case.jpg">
+								<figcaption style="font-size: 40px; text-align: center;">かわいいケース</figcaption>
+							</figure>
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							<figure>
+								<img style="margin-bottom: 5px;" height=400 src="dist/images/raspberry_pi_with_touch_screen.jpg">
+								<figcaption style="font-size: 40px; text-align: center;">タッチスクリーン</figcaption>
+							</figure>
+							<a style="font-size: 20px;" href="https://trickiknow.com/how-to-install-waveshare-3-5-inch-lcd-on-raspberry-pi-4/">How to Install WaveShare 3.5 Inch LCD on Raspberry Pi 4</a>
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							<figure>
+								<img style="margin-bottom: 5px;" height=600 src="dist/images/raspberry_pi_400.jpg">
+								<figcaption style="font-size: 40px; text-align: center;">Raspberry Pi 400</figcaption>
+							</figure>
+						</textarea>
+					</section>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## ご清聴<br>ありがとうございました
+						<figure>
+							<img style="margin-top: -80px;" height=600 src="dist/images/thank_you.png">
+						</figure>
+					</textarea>
+				</section>
 			</div>
 		</div>
-
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
@@ -31,7 +341,6 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 			});
